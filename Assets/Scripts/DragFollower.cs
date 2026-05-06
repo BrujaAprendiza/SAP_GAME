@@ -36,6 +36,6 @@ public class DragFollower : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void OnEndDrag(PointerEventData eventData)
     {
-       // rectTransform.position = startPosition;
+        //rectTransform.position = newPos;
     }
 }
