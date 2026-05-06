@@ -5,14 +5,14 @@ using UnityEngine.UI;
 public class DragFollower : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     private RectTransform rectTransform;
-    private Canvas canvas;
+    [SerializeField] private RectTransform parentTransform;
     private Vector2 startPosition;
 
     void Awake()
     {
         startPosition = transform.position;
         rectTransform = GetComponent<RectTransform>();
-        canvas = GetComponentInParent<Canvas>();
+        
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -23,19 +23,19 @@ public class DragFollower : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
-        // Convert screen position to Canvas local position
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvas.transform as RectTransform,
-            eventData.position,
-            canvas.worldCamera,
-            out Vector2 localPoint
-        );
+        Vector2 newPos = parentTransform.InverseTransformVector(eventData.position);
+        rectTransform.position = newPos;
+        print("Mouse pos: " + eventData.position);
+        print("New pos: " + newPos);
+    }
 
-        rectTransform.anchoredPosition = localPoint;
+    public void Update()
+    {
+
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.position = startPosition;
+       // rectTransform.position = startPosition;
     }
 }
