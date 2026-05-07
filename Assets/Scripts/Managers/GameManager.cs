@@ -13,11 +13,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] public List<int> IngredientOneCount = new List<int>();
     [SerializeField] public List<int> IngredientTwoCount = new List<int>();
     [SerializeField] public List<int> IngredientThreeCount = new List<int>();
-    [SerializeField] private int ammountToWin = 3;
+    //[SerializeField] private int ammountToWin;
 
     [Header("Scene Transition")]
     [SerializeField] private SceneLoader sceneLoader;
     [SerializeField] private string nextSceneName;
+
+    // All SlotControllers in the scene, found automatically at start
+    private SlotController[] _allSlots;
+
 
     private void Awake()
     {
@@ -33,7 +37,16 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
     }
-    
+
+    private void Start()
+    {
+        // Find every slot in the scene once at load time
+        _allSlots = FindObjectsByType<SlotController>(FindObjectsSortMode.None);
+
+        if (_allSlots.Length == 0)
+            Debug.LogWarning("[GameManager] No SlotControllers found in the scene.");
+    }
+
     public void AddToSlot(int ingredientNumber)
     {
         if (ingredientNumber == 1)
@@ -59,12 +72,13 @@ public class GameManager : MonoBehaviour
         //    Win();
         //}
 
-        if (IngredientOneCount.Count >= ammountToWin &&
-        IngredientTwoCount.Count >= ammountToWin &&
-        IngredientThreeCount.Count >= ammountToWin)
+        foreach (SlotController slot in _allSlots)
         {
-            Win();
+            if (slot.ingredientAmmountInSlot < slot.slotCapacity)
+                return; // At least one slot still has room — not done yet
         }
+
+        Win();
     }
 
     private void Win()

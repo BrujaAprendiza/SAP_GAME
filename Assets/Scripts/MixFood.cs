@@ -1,8 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MixFood : MonoBehaviour, IBeginDragHandler, IEndDragHandler
+public class MixFood : MonoBehaviour//,IBeginDragHandler, IEndDragHandler
 {
 
     [SerializeField] private List<Transform> waypoints;  // Drag your transforms here

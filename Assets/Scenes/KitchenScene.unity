@@ -4466,6 +4466,7 @@ MonoBehaviour:
   ingredientTag: Tomato
   slotNumber: 2
   ingredientAmmountInSlot: 0
+  slotCapacity: 7
 --- !u!114 &1081793198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5692,6 +5693,7 @@ MonoBehaviour:
   ingredientTag: Pasta
   slotNumber: 1
   ingredientAmmountInSlot: 0
+  slotCapacity: 7
 --- !u!1 &1466106959
 GameObject:
   m_ObjectHideFlags: 0
@@ -5981,6 +5983,7 @@ MonoBehaviour:
   ingredientTag: Olive Oil
   slotNumber: 3
   ingredientAmmountInSlot: 0
+  slotCapacity: 6
 --- !u!114 &1562245542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7520,7 +7523,6 @@ MonoBehaviour:
   IngredientOneCount: 
   IngredientTwoCount: 
   IngredientThreeCount: 
-  ammountToWin: 3
   sceneLoader: {fileID: 1903631102}
   nextSceneName: EndScene
 --- !u!4 &1994794297
