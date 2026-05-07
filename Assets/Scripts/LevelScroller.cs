@@ -6,15 +6,19 @@ using TMPro;
 public class RecipeLevelScroller : MonoBehaviour
 {
     [Header("Scroll View")]
+    [Tooltip("The 'Content' RectTransform inside your Scroll View > Viewport")]
     public RectTransform contentTransform;
 
     [Header("Button Prefab")]
+    [Tooltip("Your recipe button prefab")]
     public GameObject buttonPrefab;
 
     [Header("Scene Loader")]
+    [Tooltip("The GameObject that has SceneLoader.cs attached")]
     public SceneLoader sceneLoader;
 
     [Header("Recipe Levels")]
+    [Tooltip("Add one entry per level. Order here = order in the scroll list.")]
     public List<RecipeLevel> recipeLevels = new List<RecipeLevel>();
 
     private const string IMAGE_NAME = "RecipeImage";
@@ -26,16 +30,16 @@ public class RecipeLevelScroller : MonoBehaviour
 
     private void Awake()
     {
-        //_scrollRect = GetComponentInParent<ScrollRect>();
-        //if (_scrollRect == null)
-        //    _scrollRect = FindFirstObjectByType<ScrollRect>();
+        _scrollRect = GetComponentInParent<ScrollRect>();
+        if (_scrollRect == null)
+            _scrollRect = FindFirstObjectByType<ScrollRect>();
 
-        //if (_scrollRect != null)
-        //{
-        //    _scrollRect.movementType = ScrollRect.MovementType.Clamped;
-        //    _scrollRect.horizontal = false;
-        //    _scrollRect.vertical = true;
-        //}
+        if (_scrollRect != null)
+        {
+            _scrollRect.movementType = ScrollRect.MovementType.Clamped;
+            _scrollRect.horizontal = false;
+            _scrollRect.vertical = true;
+        }
     }
 
     private void Start()
@@ -51,21 +55,23 @@ public class RecipeLevelScroller : MonoBehaviour
         foreach (Transform child in contentTransform)
             Destroy(child.gameObject);
 
-        foreach (RecipeLevel recipe in recipeLevels)
+        for (int i = 0; i < recipeLevels.Count; i++)
         {
-            if (string.IsNullOrEmpty(recipe.sceneName))
-            {
-                Debug.LogWarning("[RecipeLevelScroller] A recipe entry has no scene name and will be skipped.");
-                continue;
-            }
+            RecipeLevel recipe = recipeLevels[i];
+
+            bool hasScene = !string.IsNullOrEmpty(recipe.sceneName);
 
             GameObject buttonObj = Instantiate(buttonPrefab, contentTransform);
-            buttonObj.name = $"Recipe_{recipe.sceneName}";
+            buttonObj.name = hasScene ? $"Recipe_{recipe.sceneName}" : $"Recipe_Placeholder_{i + 1}";
 
             ApplyRecipeImage(buttonObj, recipe);
-            ApplyRecipeTitle(buttonObj, recipe);
+            ApplyRecipeTitle(buttonObj, recipe, i + 1);
             ApplyDifficultyStars(buttonObj, recipe);
-            WireButtonClick(buttonObj, recipe);
+
+            if (hasScene)
+                WireButtonClick(buttonObj, recipe);
+            else
+                DisableButton(buttonObj);
         }
     }
 
@@ -92,7 +98,7 @@ public class RecipeLevelScroller : MonoBehaviour
         }
     }
 
-    private void ApplyRecipeTitle(GameObject buttonObj, RecipeLevel recipe)
+    private void ApplyRecipeTitle(GameObject buttonObj, RecipeLevel recipe, int fallbackIndex)
     {
         Transform titleTransform = buttonObj.transform.Find(TITLE_NAME);
         if (titleTransform == null)
@@ -108,7 +114,12 @@ public class RecipeLevelScroller : MonoBehaviour
             return;
         }
 
-        label.text = string.IsNullOrEmpty(recipe.displayTitle) ? recipe.sceneName : recipe.displayTitle;
+        if (!string.IsNullOrEmpty(recipe.displayTitle))
+            label.text = recipe.displayTitle;
+        else if (!string.IsNullOrEmpty(recipe.sceneName))
+            label.text = recipe.sceneName;
+        else
+            label.text = $"Level {fallbackIndex}";
     }
 
     private void ApplyDifficultyStars(GameObject buttonObj, RecipeLevel recipe)
@@ -152,6 +163,13 @@ public class RecipeLevelScroller : MonoBehaviour
         });
     }
 
+    private void DisableButton(GameObject buttonObj)
+    {
+        Button button = buttonObj.GetComponent<Button>();
+        if (button != null)
+            button.interactable = false;
+    }
+
     private bool ValidateReferences()
     {
         if (contentTransform == null)
@@ -184,7 +202,7 @@ public class RecipeLevel
     [Tooltip("Exact scene name as registered in Build Settings")]
     public string sceneName;
 
-    [Tooltip("The recipe name shown on the button")]
+    [Tooltip("The recipe name shown on the button (e.g. 'Mushroom Risotto')")]
     public string displayTitle;
 
     [Tooltip("The recipe photo shown on the button")]
