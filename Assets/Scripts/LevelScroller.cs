@@ -6,19 +6,18 @@ using TMPro;
 public class RecipeLevelScroller : MonoBehaviour
 {
     [Header("Scroll View")]
-    [Tooltip("The 'Content' RectTransform inside your Scroll View > Viewport")]
     public RectTransform contentTransform;
 
     [Header("Button Prefab")]
-    [Tooltip("Your recipe button prefab")]
     public GameObject buttonPrefab;
 
     [Header("Scene Loader")]
-    [Tooltip("The GameObject that has SceneLoader.cs attached")]
     public SceneLoader sceneLoader;
 
+    [Header("Unavailable Level Appearance")]
+    public Color unavailableColor = new Color(0.6f, 0.6f, 0.6f, 1f);
+
     [Header("Recipe Levels")]
-    [Tooltip("Add one entry per level. Order here = order in the scroll list.")]
     public List<RecipeLevel> recipeLevels = new List<RecipeLevel>();
 
     private const string IMAGE_NAME = "RecipeImage";
@@ -30,16 +29,16 @@ public class RecipeLevelScroller : MonoBehaviour
 
     private void Awake()
     {
-        _scrollRect = GetComponentInParent<ScrollRect>();
-        if (_scrollRect == null)
-            _scrollRect = FindFirstObjectByType<ScrollRect>();
+        //_scrollRect = GetComponentInParent<ScrollRect>();
+        //if (_scrollRect == null)
+        //    _scrollRect = FindFirstObjectByType<ScrollRect>();
 
-        if (_scrollRect != null)
-        {
-            _scrollRect.movementType = ScrollRect.MovementType.Clamped;
-            _scrollRect.horizontal = false;
-            _scrollRect.vertical = true;
-        }
+        //if (_scrollRect != null)
+        //{
+        //    _scrollRect.movementType = ScrollRect.MovementType.Clamped;
+        //    _scrollRect.horizontal = false;
+        //    _scrollRect.vertical = true;
+        //}
     }
 
     private void Start()
@@ -165,9 +164,19 @@ public class RecipeLevelScroller : MonoBehaviour
 
     private void DisableButton(GameObject buttonObj)
     {
+        //Button button = buttonObj.GetComponent<Button>();
+        //if (button != null)
+        //    button.interactable = false;
+
         Button button = buttonObj.GetComponent<Button>();
-        if (button != null)
-            button.interactable = false;
+        if (button == null)
+            return;
+
+        ColorBlock colors = button.colors;
+        colors.disabledColor = unavailableColor;
+        button.colors = colors;
+
+        button.interactable = false;
     }
 
     private bool ValidateReferences()

@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -82}
+  m_AnchoredPosition: {x: 0, y: -79}
   m_SizeDelta: {x: 400, y: 650}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &22405401
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1681832749}
   m_HandleRect: {fileID: 1681832748}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -380,7 +380,7 @@ RectTransform:
   m_GameObject: {fileID: 187240932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 623360208}
@@ -410,7 +410,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 95e3d5e61c7b04f49b17116f430a86ce, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ecd5de1f3c34afe439f98f44591bcd3b, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -782,8 +782,8 @@ RectTransform:
   - {fileID: 1370883399}
   - {fileID: 1543038688}
   - {fileID: 187240933}
-  - {fileID: 729694784}
   - {fileID: 22405400}
+  - {fileID: 729694784}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1221,7 +1221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -21}
+  m_AnchoredPosition: {x: 0, y: -9}
   m_SizeDelta: {x: 476, y: 1007}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1543038689
@@ -1294,6 +1294,7 @@ MonoBehaviour:
   contentTransform: {fileID: 1225932141}
   buttonPrefab: {fileID: 3751918214948683128, guid: 50ceb3b447f0c0a4e8421586ee43ca72, type: 3}
   sceneLoader: {fileID: 1996459436}
+  unavailableColor: {r: 0.5773585, g: 0.5773585, b: 0.5773585, a: 1}
   recipeLevels:
   - sceneName: KitchenScene
     displayTitle: Spaghetti Bolognesa
@@ -1439,7 +1440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
   nextSceneName: KitchenScene
-  fadePanel: {fileID: 0}
+  fadePanel: {fileID: 729694782}
   fadeDuration: 1
 --- !u!4 &1996459437
 Transform:
