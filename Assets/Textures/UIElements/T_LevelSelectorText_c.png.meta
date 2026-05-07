@@ -1,46 +1,49 @@
 fileFormatVersion: 2
-guid: ecd5de1f3c34afe439f98f44591bcd3b
+guid: ba027edfaafd5f34696d854d7d243b6a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4462236826379363893
-    second: T_LevelSelectorText_b_0
+      213: -1548779482005342480
+    second: T_LevelSelectorText_c_0
   - first:
-      213: -6234884420759041437
-    second: T_LevelSelectorText_b_1
+      213: 7455061661514552761
+    second: T_LevelSelectorText_c_1
   - first:
-      213: -8847196787972346880
-    second: T_LevelSelectorText_b_2
+      213: -8845993026679557151
+    second: T_LevelSelectorText_c_2
   - first:
-      213: -6246235091243191202
-    second: T_LevelSelectorText_b_3
+      213: 8165310230381988070
+    second: T_LevelSelectorText_c_3
   - first:
-      213: -1855065711320653027
-    second: T_LevelSelectorText_b_4
+      213: 7132200779574042723
+    second: T_LevelSelectorText_c_4
   - first:
-      213: -30546403952508360
-    second: T_LevelSelectorText_b_5
+      213: -8776073221055385204
+    second: T_LevelSelectorText_c_5
   - first:
-      213: -3494115929946539549
-    second: T_LevelSelectorText_b_6
+      213: 8349204599640975558
+    second: T_LevelSelectorText_c_6
   - first:
-      213: -77613820691021729
-    second: T_LevelSelectorText_b_7
+      213: 7685408892314135335
+    second: T_LevelSelectorText_c_7
   - first:
-      213: 627977192113470319
-    second: T_LevelSelectorText_b_8
+      213: 3207008444813484859
+    second: T_LevelSelectorText_c_8
   - first:
-      213: -6941726232116637133
-    second: T_LevelSelectorText_b_9
+      213: 6104860911132341176
+    second: T_LevelSelectorText_c_9
   - first:
-      213: 9202095066041025389
-    second: T_LevelSelectorText_b_10
+      213: 2067514694788138888
+    second: T_LevelSelectorText_c_10
   - first:
-      213: 8087593928841011446
-    second: T_LevelSelectorText_b_11
+      213: -1289459434562092007
+    second: T_LevelSelectorText_c_11
   - first:
-      213: -193275006493838191
-    second: T_LevelSelectorText_b_12
+      213: 2058082314384987374
+    second: T_LevelSelectorText_c_12
+  - first:
+      213: 8465682361682535892
+    second: T_LevelSelectorText_c_13
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -162,13 +165,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: T_LevelSelectorText_b_0
+      name: T_LevelSelectorText_c_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 182
-        width: 85
-        height: 115
+        x: 19
+        y: 212
+        width: 64
+        height: 106
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,20 +180,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bc9ddf39f33f212c0800000000000000
-      internalID: -4462236826379363893
+      spriteID: 0f678a35441a18ae0800000000000000
+      internalID: -1548779482005342480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: T_LevelSelectorText_b_1
+      name: T_LevelSelectorText_c_1
       rect:
         serializedVersion: 2
-        x: 95
-        y: 184
-        width: 81
-        height: 110
+        x: 110
+        y: 213
+        width: 58
+        height: 105
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,86 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 36a4a0537ad3979a0800000000000000
-      internalID: -6234884420759041437
+      spriteID: 9b555312513b57760800000000000000
+      internalID: 7455061661514552761
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: T_LevelSelectorText_b_2
+      name: T_LevelSelectorText_c_2
       rect:
         serializedVersion: 2
-        x: 187
-        y: 180
-        width: 91
-        height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 00c6ee25561783580800000000000000
-      internalID: -8847196787972346880
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: T_LevelSelectorText_b_3
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 180
-        width: 91
-        height: 119
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e54beda474ae059a0800000000000000
-      internalID: -6246235091243191202
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: T_LevelSelectorText_b_4
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 182
-        width: 68
-        height: 115
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d13a9b9609b7146e0800000000000000
-      internalID: -1855065711320653027
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: T_LevelSelectorText_b_5
-      rect:
-        serializedVersion: 2
-        x: 455
-        y: 183
+        x: 191
+        y: 212
         width: 72
-        height: 112
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,20 +224,108 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 832ce3b153a739ff0800000000000000
-      internalID: -30546403952508360
+      spriteID: 1e3be27d538bc3580800000000000000
+      internalID: -8845993026679557151
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: T_LevelSelectorText_b_6
+      name: T_LevelSelectorText_c_3
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 212
+        width: 72
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e808c29462015170800000000000000
+      internalID: 8165310230381988070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_LevelSelectorText_c_4
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 212
+        width: 39
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 360664d22daaaf260800000000000000
+      internalID: 7132200779574042723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_LevelSelectorText_c_5
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 212
+        width: 61
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c81fc2037ef153680800000000000000
+      internalID: -8776073221055385204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_LevelSelectorText_c_6
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 120
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c868aee8555ed370800000000000000
+      internalID: 8349204599640975558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_LevelSelectorText_c_7
       rect:
         serializedVersion: 2
         x: 0
-        y: 6
-        width: 75
-        height: 109
+        y: 43
+        width: 69
+        height: 69
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -309,20 +334,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3e9b0870318628fc0800000000000000
-      internalID: -3494115929946539549
+      spriteID: 72b23042bae08aa60800000000000000
+      internalID: 7685408892314135335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: T_LevelSelectorText_b_7
+      name: T_LevelSelectorText_c_8
       rect:
         serializedVersion: 2
-        x: 119
-        y: 3
-        width: 75
-        height: 112
+        x: 141
+        y: 45
+        width: 46
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,20 +356,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f500d0c24a24ceef0800000000000000
-      internalID: -77613820691021729
+      spriteID: b3329c86035918c20800000000000000
+      internalID: 3207008444813484859
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: T_LevelSelectorText_b_8
+      name: T_LevelSelectorText_c_9
       rect:
         serializedVersion: 2
-        x: 200
-        y: 3
-        width: 72
-        height: 112
+        x: 202
+        y: 44
+        width: 61
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -353,20 +378,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f6b78f6dde507b800800000000000000
-      internalID: 627977192113470319
+      spriteID: 8b3f53b57a2d8b450800000000000000
+      internalID: 6104860911132341176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: T_LevelSelectorText_b_9
+      name: T_LevelSelectorText_c_10
       rect:
         serializedVersion: 2
-        x: 278
-        y: 2
-        width: 85
-        height: 115
+        x: 284
+        y: 44
+        width: 58
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -375,20 +400,42 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3325dae45c80aaf90800000000000000
-      internalID: -6941726232116637133
+      spriteID: 8874fb629a941bc10800000000000000
+      internalID: 2067514694788138888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: T_LevelSelectorText_b_10
+      name: T_LevelSelectorText_c_11
       rect:
         serializedVersion: 2
-        x: 370
+        x: 366
+        y: 46
+        width: 14
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91486a2e97bea1ee0800000000000000
+      internalID: -1289459434562092007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: T_LevelSelectorText_c_12
+      rect:
+        serializedVersion: 2
+        x: 407
         y: 0
-        width: 28
-        height: 114
+        width: 70
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -397,20 +444,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d6300c035b864bf70800000000000000
-      internalID: 9202095066041025389
+      spriteID: ee45e63f5f6cf8c10800000000000000
+      internalID: 2058082314384987374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: T_LevelSelectorText_b_11
+      name: T_LevelSelectorText_c_13
       rect:
         serializedVersion: 2
-        x: 411
-        y: 2
-        width: 71
-        height: 112
+        x: 500
+        y: 44
+        width: 60
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -419,30 +466,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f0ac2014d7ec3070800000000000000
-      internalID: 8087593928841011446
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: T_LevelSelectorText_b_12
-      rect:
-        serializedVersion: 2
-        x: 491
-        y: 3
-        width: 71
-        height: 112
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 19439f5d769515df0800000000000000
-      internalID: -193275006493838191
+      spriteID: 4d5a06d31452c7570800000000000000
+      internalID: 8465682361682535892
       vertices: []
       indices: 
       edges: []
@@ -461,19 +486,20 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      T_LevelSelectorText_b_0: -4462236826379363893
-      T_LevelSelectorText_b_1: -6234884420759041437
-      T_LevelSelectorText_b_10: 9202095066041025389
-      T_LevelSelectorText_b_11: 8087593928841011446
-      T_LevelSelectorText_b_12: -193275006493838191
-      T_LevelSelectorText_b_2: -8847196787972346880
-      T_LevelSelectorText_b_3: -6246235091243191202
-      T_LevelSelectorText_b_4: -1855065711320653027
-      T_LevelSelectorText_b_5: -30546403952508360
-      T_LevelSelectorText_b_6: -3494115929946539549
-      T_LevelSelectorText_b_7: -77613820691021729
-      T_LevelSelectorText_b_8: 627977192113470319
-      T_LevelSelectorText_b_9: -6941726232116637133
+      T_LevelSelectorText_c_0: -1548779482005342480
+      T_LevelSelectorText_c_1: 7455061661514552761
+      T_LevelSelectorText_c_10: 2067514694788138888
+      T_LevelSelectorText_c_11: -1289459434562092007
+      T_LevelSelectorText_c_12: 2058082314384987374
+      T_LevelSelectorText_c_13: 8465682361682535892
+      T_LevelSelectorText_c_2: -8845993026679557151
+      T_LevelSelectorText_c_3: 8165310230381988070
+      T_LevelSelectorText_c_4: 7132200779574042723
+      T_LevelSelectorText_c_5: -8776073221055385204
+      T_LevelSelectorText_c_6: 8349204599640975558
+      T_LevelSelectorText_c_7: 7685408892314135335
+      T_LevelSelectorText_c_8: 3207008444813484859
+      T_LevelSelectorText_c_9: 6104860911132341176
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
