@@ -2,32 +2,41 @@ using UnityEngine;
 
 public class SlotController : MonoBehaviour
 {
-    [SerializeField] private BoxCollider2D boxCollider;
-    [SerializeField] private string ingredientTag;
+    [SerializeField] public string ingredientTag;
     [SerializeField] private int slotNumber;
+    [SerializeField] public int ingredientAmmountInSlot = 0;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void Awake()
     {
-
-        if (collision != null)
-        {
-            CheckIngredient(collision.gameObject);
-        }
-
+        ingredientAmmountInSlot = 0;
     }
 
-    private void CheckIngredient(GameObject ingredientGO)
+    public void CheckIngredient(GameObject ingredientGO)
     {
-        if (ingredientGO.tag == ingredientTag)
+        print("CheckIngredient called from " + ingredientGO.name);
+
+        if (ingredientGO.tag == ingredientTag & ingredientAmmountInSlot < 3)
         {
             sendToManager(slotNumber);
-            ingredientGO.gameObject.gameObject.transform.position = this.transform.position; //This could break without RectTransform
+            print(ingredientGO.tag + " is equal to " + ingredientTag);
+            
+            ingredientGO.transform.position = this.transform.position;
+            ingredientGO.GetComponent<DragFollower>().enabled = false; // prevent further dragging
+        }
+        else if (ingredientGO.tag != ingredientTag)
+        {
+            print("Wrong ingredient for slot " + slotNumber);
+        }
+        else if(ingredientAmmountInSlot >= 3)
+        {
+            print("Slot is Full!");
         }
     }
-
 
     private void sendToManager(int slotValue)
     {
+        print("Sending to manager " + slotValue);
         GameManager.Instance.AddToSlot(slotValue);
     }
 }
