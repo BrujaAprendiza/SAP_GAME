@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
     [SerializeField] public List<int> IngredientOneCount = new List<int>();
     [SerializeField] public List<int> IngredientTwoCount = new List<int>();
     [SerializeField] public List<int> IngredientThreeCount = new List<int>();
@@ -11,8 +13,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int ammountToWin = 3;
 
 
-
-    public void AddIngredient(int ingredientNumber)
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+        }
+    }
+    
+    public void AddToSlot(int ingredientNumber)
     {
         if (ingredientNumber == 1)
         {
@@ -42,10 +55,5 @@ public class GameManager : MonoBehaviour
     {
         print("You won!");
     }
-
-
-
-
-
 
 }
