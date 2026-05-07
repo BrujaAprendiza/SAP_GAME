@@ -14,12 +14,12 @@ public class SlotController : MonoBehaviour
 
     public void CheckIngredient(GameObject ingredientGO)
     {
-        print("CheckIngredient called from " + ingredientGO.name);
+        
 
         if (ingredientGO.tag == ingredientTag & ingredientAmmountInSlot < 3)
         {
             sendToManager(slotNumber);
-            print(ingredientGO.tag + " is equal to " + ingredientTag);
+            
             
             ingredientGO.transform.position = this.transform.position;
             ingredientGO.GetComponent<DragFollower>().enabled = false; // prevent further dragging
@@ -36,7 +36,7 @@ public class SlotController : MonoBehaviour
 
     private void sendToManager(int slotValue)
     {
-        print("Sending to manager " + slotValue);
+        
         GameManager.Instance.AddToSlot(slotValue);
     }
 }
