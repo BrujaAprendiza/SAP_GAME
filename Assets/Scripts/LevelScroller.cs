@@ -1,0 +1,214 @@
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class RecipeLevelScroller : MonoBehaviour
+{
+    [Header("Scroll View")]
+    [Tooltip("The 'Content' RectTransform inside your Scroll View > Viewport")]
+    public RectTransform contentTransform;
+
+    [Header("Button Prefab")]
+    [Tooltip("Your recipe button prefab")]
+    public GameObject buttonPrefab;
+
+    [Header("Scene Loader")]
+    [Tooltip("The GameObject that has SceneLoader.cs attached")]
+    public SceneLoader sceneLoader;
+
+    [Header("Recipe Levels")]
+    [Tooltip("Add one entry per level. Order here = order in the scroll list.")]
+    public List<RecipeLevel> recipeLevels = new List<RecipeLevel>();
+
+    private const string IMAGE_NAME = "RecipeImage";
+    private const string TITLE_NAME = "RecipeTitle";
+    private const string STAR_CONTAINER = "StarContainer";
+    private const string STAR_PREFIX = "Star";
+
+    private ScrollRect _scrollRect;
+
+    private void Awake()
+    {
+        _scrollRect = GetComponentInParent<ScrollRect>();
+        if (_scrollRect == null)
+            _scrollRect = FindFirstObjectByType<ScrollRect>();
+
+        if (_scrollRect != null)
+        {
+            _scrollRect.movementType = ScrollRect.MovementType.Clamped;
+            _scrollRect.horizontal = false;
+            _scrollRect.vertical = true;
+        }
+    }
+
+    private void Start()
+    {
+        if (!ValidateReferences())
+            return;
+
+        BuildRecipeButtons();
+    }
+
+    private void BuildRecipeButtons()
+    {
+        foreach (Transform child in contentTransform)
+            Destroy(child.gameObject);
+
+        for (int i = 0; i < recipeLevels.Count; i++)
+        {
+            RecipeLevel recipe = recipeLevels[i];
+
+            bool hasScene = !string.IsNullOrEmpty(recipe.sceneName);
+
+            GameObject buttonObj = Instantiate(buttonPrefab, contentTransform);
+            buttonObj.name = hasScene ? $"Recipe_{recipe.sceneName}" : $"Recipe_Placeholder_{i + 1}";
+
+            ApplyRecipeImage(buttonObj, recipe);
+            ApplyRecipeTitle(buttonObj, recipe, i + 1);
+            ApplyDifficultyStars(buttonObj, recipe);
+
+            if (hasScene)
+                WireButtonClick(buttonObj, recipe);
+            else
+                DisableButton(buttonObj);
+        }
+    }
+
+    private void ApplyRecipeImage(GameObject buttonObj, RecipeLevel recipe)
+    {
+        Transform imageTransform = buttonObj.transform.Find(IMAGE_NAME);
+        if (imageTransform == null)
+        {
+            Debug.LogWarning($"[RecipeLevelScroller] Could not find child named '{IMAGE_NAME}' on prefab.");
+            return;
+        }
+
+        Image image = imageTransform.GetComponent<Image>();
+        if (image == null)
+        {
+            Debug.LogWarning($"[RecipeLevelScroller] '{IMAGE_NAME}' has no Image component.");
+            return;
+        }
+
+        if (recipe.recipeImage != null)
+        {
+            image.sprite = recipe.recipeImage;
+            image.preserveAspect = true;
+        }
+    }
+
+    private void ApplyRecipeTitle(GameObject buttonObj, RecipeLevel recipe, int fallbackIndex)
+    {
+        Transform titleTransform = buttonObj.transform.Find(TITLE_NAME);
+        if (titleTransform == null)
+        {
+            Debug.LogWarning($"[RecipeLevelScroller] Could not find child named '{TITLE_NAME}' on prefab.");
+            return;
+        }
+
+        TextMeshProUGUI label = titleTransform.GetComponent<TextMeshProUGUI>();
+        if (label == null)
+        {
+            Debug.LogWarning($"[RecipeLevelScroller] '{TITLE_NAME}' has no TextMeshProUGUI component.");
+            return;
+        }
+
+        if (!string.IsNullOrEmpty(recipe.displayTitle))
+            label.text = recipe.displayTitle;
+        else if (!string.IsNullOrEmpty(recipe.sceneName))
+            label.text = recipe.sceneName;
+        else
+            label.text = $"Level {fallbackIndex}";
+    }
+
+    private void ApplyDifficultyStars(GameObject buttonObj, RecipeLevel recipe)
+    {
+        Transform starContainer = buttonObj.transform.Find(STAR_CONTAINER);
+        if (starContainer == null)
+        {
+            Debug.LogWarning($"[RecipeLevelScroller] Could not find child named '{STAR_CONTAINER}' on prefab.");
+            return;
+        }
+
+        int clampedDifficulty = Mathf.Clamp(recipe.difficulty, 1, 4);
+
+        for (int i = 1; i <= 4; i++)
+        {
+            Transform starTransform = starContainer.Find($"{STAR_PREFIX}{i}");
+            if (starTransform == null)
+            {
+                Debug.LogWarning($"[RecipeLevelScroller] Could not find '{STAR_PREFIX}{i}' inside '{STAR_CONTAINER}'.");
+                continue;
+            }
+
+            starTransform.gameObject.SetActive(i <= clampedDifficulty);
+        }
+    }
+
+    private void WireButtonClick(GameObject buttonObj, RecipeLevel recipe)
+    {
+        Button button = buttonObj.GetComponent<Button>();
+        if (button == null)
+        {
+            Debug.LogWarning($"[RecipeLevelScroller] Prefab is missing a Button component.");
+            return;
+        }
+
+        string capturedScene = recipe.sceneName;
+        button.onClick.AddListener(() =>
+        {
+            sceneLoader.nextSceneName = capturedScene;
+            sceneLoader.LoadNextScene();
+        });
+    }
+
+    private void DisableButton(GameObject buttonObj)
+    {
+        Button button = buttonObj.GetComponent<Button>();
+        if (button != null)
+            button.interactable = false;
+    }
+
+    private bool ValidateReferences()
+    {
+        if (contentTransform == null)
+        {
+            Debug.LogError("[RecipeLevelScroller] Content Transform is not assigned!");
+            return false;
+        }
+        if (buttonPrefab == null)
+        {
+            Debug.LogError("[RecipeLevelScroller] Button Prefab is not assigned!");
+            return false;
+        }
+        if (sceneLoader == null)
+        {
+            Debug.LogError("[RecipeLevelScroller] Scene Loader is not assigned!");
+            return false;
+        }
+        if (recipeLevels == null || recipeLevels.Count == 0)
+        {
+            Debug.LogWarning("[RecipeLevelScroller] Recipe Levels list is empty. No buttons will be created.");
+            return false;
+        }
+        return true;
+    }
+}
+
+[System.Serializable]
+public class RecipeLevel
+{
+    [Tooltip("Exact scene name as registered in Build Settings")]
+    public string sceneName;
+
+    [Tooltip("The recipe name shown on the button (e.g. 'Mushroom Risotto')")]
+    public string displayTitle;
+
+    [Tooltip("The recipe photo shown on the button")]
+    public Sprite recipeImage;
+
+    [Tooltip("Difficulty rating: 1 = easy, 2 = medium, 3 = hard, 4 = very hard")]
+    [Range(1, 4)]
+    public int difficulty = 1;
+}
