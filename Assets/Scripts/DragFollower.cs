@@ -6,20 +6,21 @@ using System.Collections.Generic;
 public class DragFollower : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [SerializeField] RectTransform parentRectTransform;
-    private RectTransform rectTransform;
+    [SerializeField] private RectTransform rectTransform;
     private Vector2 startPosition;
-    private Canvas parentCanvas;  // Needed to convert screen to local position
+    [SerializeField] private Canvas parentCanvas;  // Needed to convert screen to local position
 
+    [SerializeField] private float scaleMultiplier;
     //public bool canSnap = false;
-   
 
+    private Vector2 dragOffset;
     // Assign these in Inspector, or find them dynamically
     [SerializeField] private List<SlotController> allSlots;
 
     void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
-        parentCanvas = GetComponentInParent<Canvas>();
+        
+       
 
      
 
@@ -28,23 +29,25 @@ public class DragFollower : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        startPosition = rectTransform.anchoredPosition;
+        float scale = parentCanvas.scaleFactor;
+        Vector2 canvasCursor = eventData.position / scale;
+        dragOffset = rectTransform.anchoredPosition - canvasCursor;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-       
-    
-        Vector2 newPos = parentRectTransform.InverseTransformVector(eventData.position);
-        rectTransform.position = newPos;
 
-    
+
+
+        float scale = parentCanvas.scaleFactor;
+        Vector2 canvasCursor = eventData.position / scale;
+        rectTransform.anchoredPosition = canvasCursor + dragOffset;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         SlotController targetSlot = GetOverlappingSlot();
-        if (targetSlot.ingredientTag == this.tag & targetSlot.ingredientAmmountInSlot < 3)
+        if (targetSlot != null && targetSlot.ingredientTag == this.tag && targetSlot.ingredientAmmountInSlot < 3)
         {
             // Snap ingredient to slot position
             rectTransform.position = targetSlot.transform.position;
@@ -54,7 +57,8 @@ public class DragFollower : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         }
         else
         {
-            rectTransform.anchoredPosition = startPosition;
+            //rectTransform.anchoredPosition = startPosition;
+            print("Snap back!");
         }
         
     }
