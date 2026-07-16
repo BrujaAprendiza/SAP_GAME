@@ -1,9 +1,15 @@
+
+using System.Collections;
+using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
 public class MixFood : MonoBehaviour
+//miau
+
 {
     [SerializeField] private List<RectTransform> waypoints;
     [SerializeField] private float moveSpeed = 500f;

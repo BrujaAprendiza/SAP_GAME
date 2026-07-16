@@ -24,6 +24,7 @@ public class RecipeLevelScroller : MonoBehaviour
     private const string TITLE_NAME = "RecipeTitle";
     private const string STAR_CONTAINER = "StarContainer";
     private const string STAR_PREFIX = "Star";
+    private const string LOCK_ICON = "LockIcon";
 
     private ScrollRect _scrollRect;
 
@@ -66,6 +67,8 @@ public class RecipeLevelScroller : MonoBehaviour
             ApplyRecipeImage(buttonObj, recipe);
             ApplyRecipeTitle(buttonObj, recipe, i + 1);
             ApplyDifficultyStars(buttonObj, recipe);
+
+            SetLockIcon(buttonObj, visible: !hasScene);
 
             if (hasScene)
                 WireButtonClick(buttonObj, recipe);
@@ -129,7 +132,6 @@ public class RecipeLevelScroller : MonoBehaviour
             Debug.LogWarning($"[RecipeLevelScroller] Could not find child named '{STAR_CONTAINER}' on prefab.");
             return;
         }
-
         int clampedDifficulty = Mathf.Clamp(recipe.difficulty, 1, 4);
 
         for (int i = 1; i <= 4; i++)
@@ -140,7 +142,6 @@ public class RecipeLevelScroller : MonoBehaviour
                 Debug.LogWarning($"[RecipeLevelScroller] Could not find '{STAR_PREFIX}{i}' inside '{STAR_CONTAINER}'.");
                 continue;
             }
-
             starTransform.gameObject.SetActive(i <= clampedDifficulty);
         }
     }
@@ -164,10 +165,6 @@ public class RecipeLevelScroller : MonoBehaviour
 
     private void DisableButton(GameObject buttonObj)
     {
-        //Button button = buttonObj.GetComponent<Button>();
-        //if (button != null)
-        //    button.interactable = false;
-
         Button button = buttonObj.GetComponent<Button>();
         if (button == null)
             return;
@@ -177,6 +174,19 @@ public class RecipeLevelScroller : MonoBehaviour
         button.colors = colors;
 
         button.interactable = false;
+    }
+
+    private void SetLockIcon(GameObject buttonObj, bool visible)
+    {
+        Transform lockTransform = buttonObj.transform.Find(LOCK_ICON);
+        if (lockTransform == null)
+        {
+            if (visible)
+                Debug.LogWarning($"[RecipeLevelScroller] Could not find child named '{LOCK_ICON}' on prefab.");
+            return;
+        }
+
+        lockTransform.gameObject.SetActive(visible);
     }
 
     private bool ValidateReferences()
@@ -208,16 +218,9 @@ public class RecipeLevelScroller : MonoBehaviour
 [System.Serializable]
 public class RecipeLevel
 {
-    [Tooltip("Exact scene name as registered in Build Settings")]
     public string sceneName;
-
-    [Tooltip("The recipe name shown on the button (e.g. 'Mushroom Risotto')")]
     public string displayTitle;
-
-    [Tooltip("The recipe photo shown on the button")]
     public Sprite recipeImage;
-
-    [Tooltip("Difficulty rating: 1 = easy, 2 = medium, 3 = hard, 4 = very hard")]
     [Range(1, 4)]
     public int difficulty = 1;
 }

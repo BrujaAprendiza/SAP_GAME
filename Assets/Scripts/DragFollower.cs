@@ -19,11 +19,6 @@ public class DragFollower : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     void Awake()
     {
-        
-       
-
-     
-
         startPosition = rectTransform.anchoredPosition;
     }
 
@@ -36,9 +31,6 @@ public class DragFollower : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
-
-
-
         float scale = parentCanvas.scaleFactor;
         Vector2 canvasCursor = eventData.position / scale;
         rectTransform.anchoredPosition = canvasCursor + dragOffset;
@@ -47,7 +39,8 @@ public class DragFollower : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     public void OnEndDrag(PointerEventData eventData)
     {
         SlotController targetSlot = GetOverlappingSlot();
-        if (targetSlot != null && targetSlot.ingredientTag == this.tag && targetSlot.ingredientAmmountInSlot < 3)
+        if (targetSlot != null && targetSlot.ingredientTag == this.tag 
+            && targetSlot.ingredientAmmountInSlot < targetSlot.slotCapacity)
         {
             // Snap ingredient to slot position
             rectTransform.position = targetSlot.transform.position;
@@ -60,7 +53,6 @@ public class DragFollower : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
             //rectTransform.anchoredPosition = startPosition;
             print("Snap back!");
         }
-        
     }
 
     private SlotController GetOverlappingSlot()

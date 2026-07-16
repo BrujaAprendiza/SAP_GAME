@@ -5,7 +5,9 @@ public class SlotController : MonoBehaviour
     [SerializeField] public string ingredientTag;
     [SerializeField] private int slotNumber;
     [SerializeField] public int ingredientAmmountInSlot = 0;
+    [SerializeField] public int slotCapacity = 7;
 
+    private RectTransform _rectTransform;
 
     private void Awake()
     {
@@ -14,12 +16,10 @@ public class SlotController : MonoBehaviour
 
     public void CheckIngredient(GameObject ingredientGO)
     {
-        
-
-        if (ingredientGO.tag == ingredientTag & ingredientAmmountInSlot < 3)
+        if (ingredientGO.tag == ingredientTag && ingredientAmmountInSlot < slotCapacity)
         {
+            ingredientAmmountInSlot++;
             sendToManager(slotNumber);
-            
             
             ingredientGO.transform.position = this.transform.position;
             ingredientGO.GetComponent<DragFollower>().enabled = false; // prevent further dragging
@@ -28,7 +28,7 @@ public class SlotController : MonoBehaviour
         {
             print("Wrong ingredient for slot " + slotNumber);
         }
-        else if(ingredientAmmountInSlot >= 3)
+        else if(ingredientAmmountInSlot >= slotCapacity)
         {
             print("Slot is Full!");
         }
@@ -36,7 +36,6 @@ public class SlotController : MonoBehaviour
 
     private void sendToManager(int slotValue)
     {
-        
         GameManager.Instance.AddToSlot(slotValue);
     }
 }
