@@ -899,8 +899,8 @@ MonoBehaviour:
   - {fileID: 1954123899}
   - {fileID: 658581391}
   - {fileID: 1007642885}
-  moveSpeed: 5
-  arrivalDistance: 0.05
+  moveSpeed: 250
+  arrivalDistance: 1
 --- !u!1 &1954123898
 GameObject:
   m_ObjectHideFlags: 0
